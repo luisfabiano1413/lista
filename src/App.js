@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Formulario from './components/Formulario';
+import Lista from './components/Lista';
 
 function App() {
+  const [tareas, setTareas] = useState([]);
+
+  const agregarTarea = (tarea) => {
+    setTareas([...tareas, tarea]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="min-h-screen bg-gray-100 p-6">
+      <h1 className="text-3xl font-bold text-center mb-6">Gestor de Tareas</h1>
+      <Formulario onAgregarTarea={agregarTarea} />
+      <Lista tareas={tareas} />
     </div>
   );
 }
